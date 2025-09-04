@@ -208,4 +208,73 @@ else:
         saldo=saldo-retiro
 
 print(f"Su saldo es: ${saldo:.2f}")
-    
+
+#EJERCICIO 4 (EN CASA)
+
+nombre=""
+edad=0
+experiencia=0
+estado=""
+
+nombre=pedir_texto("Ingrese su nombre: ").title()
+edad=pedir_entero("Ingrese su edad: ")
+experiencia=pedir_entero("Indique sus años de experiencia como conductor: ")
+
+if edad<18:
+    estado="No puede conducir."
+elif edad>=18 and experiencia<1:
+    estado="Principiante."
+elif edad>=21 and experiencia>=1 and experiencia<=5:
+    estado="Conductor intermedio."
+elif edad>=30 and experiencia>10:
+    estado="Conductor profesional."
+else:
+    estado="Conductor estándar."
+
+print(f"Nombre: {nombre}, edad: {edad}, estado como conductor: {estado}")
+
+#EJERCICIO 5 (EN CASA)
+
+cliente=""
+cantidad_productos=0
+monto_total=0
+medio_pago=""
+total=0
+descuento=0
+recargo=0
+descuento_extra=0
+total_pagar=0
+
+cliente=pedir_texto("Indique el nombre de cliente: ").title()
+cantidad_productos=pedir_entero("Indique la cantidad de productos: ")
+monto_total=pedir_float("Ingrese el monto total de la compra: ")
+medio_pago=pedir_texto("Indique su medio de pago: ").lower()
+
+if medio_pago=="efectivo":
+    descuento=monto_total * 0.15
+elif medio_pago=="debito":
+    descuento=monto_total * 0.10
+elif medio_pago=="credito":
+    recargo=monto_total * 0.05
+elif medio_pago=="mercado pago":
+    if monto_total>10000:
+        descuento=monto_total*0.20
+
+total_pagar=monto_total-descuento+recargo
+
+if cantidad_productos>10:
+    descuento_extra=total_pagar*0.05
+    total_pagar=total_pagar-descuento_extra
+
+print(f"Cliente: {cliente}")
+print(f"Cantidad de productos: {cantidad_productos}")
+print(f"Monto sin descuentos: ${monto_total:.2f}")
+
+if descuento>0:
+    print(f"Descuento por medio de pago ({medio_pago}): ${descuento:.2f}")
+if recargo>0:
+    print(f"Recargo por pago con crédito: ${recargo:.2f}")
+if descuento_extra>0:
+    print(f"Descuento por cantidad de productos: ${descuento_extra:.2f}")
+
+print(f"Total a pagar: ${total_pagar:.2f}")

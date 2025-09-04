@@ -95,31 +95,48 @@ print(f"Historial: {historial}")
 print(f"Monto aprobado: {condicion}")
 
 
-#EJERCICIO 1 (EN CASA) #TERMINAR
+#EJERCICIO 1 (EN CASA) 
 
 imp_mayor=0.35
 imp_medio=0.2
 imp_menor=0.1
+imp_mayor_edad=0.50
 limite_edad=65
 nombre_completo=""
 edad=0
 ingresos_anuales=0
+impuesto_final=0
+
 
 nombre_completo=pedir_texto("Ingresar su nombre completo: ")
 edad=pedir_entero("Ingresar su edad: ",18,120)
 ingresos_anuales=pedir_entero("Ingrese el total de sus ingresos anuales: ",0)
 
+
 if ingresos_anuales<500_000:
     print("No paga impuestos")
     impuesto_final=0
 elif ingresos_anuales>=500_000 and ingresos_anuales<2_000_000:
-    if edad>=limite_edad:
-        print("Paga ",imp_menor/2,"% de impuestos")
-        impuesto_final=ingresos_anuales*(imp_menor/100)
-    else:
-        print("Paga",imp_menor"% de impuestos")
-        impuesto_final=ingresos_anuales*(imp_menor/100)
-elif ingresos_anuales
+    impuesto_final=ingresos_anuales*imp_menor
+elif ingresos_anuales>=2_000_000 and ingresos_anuales<5_000_000:
+    impuesto_final=ingresos_anuales*imp_medio
+elif ingresos_anuales>=5_000_000:
+    impuesto_final=ingresos_anuales*imp_mayor
+
+
+if edad>65:
+    impuesto_final=impuesto_final*imp_mayor_edad
+else:
+    pass
+
+print(f"Nombre: {nombre_completo}")
+print(f"Ingresos: ${ingresos_anuales:.2f}")
+print(f"Edad: {edad}")
+
+if impuesto_final==0:
+    print("No paga impuestos.")
+else:
+    print(f"Impuesto final: ${impuesto_final:.2f}")
 
 #EJERCICIO 2 (EN CASA)
 
@@ -150,3 +167,45 @@ elif promedio>=8:
 print(f"Nombre: {nombre}")
 print(f"Legajo: {legajo}")
 print(f"Estado académico final: {condicion}")
+
+#EJERCICIO 3 (EN CASA)
+
+nombre=""
+pin=0
+pin_usuario=1234
+saldo=50_000
+intentos=0
+retiro=0
+comision=0
+saldo_final=0
+
+nombre=pedir_texto("Ingrese nombre y apellido: ")
+
+while intentos<3:
+    pin=pedir_entero("Ingrese su PIN: ")
+    if pin!=pin_usuario:
+        print("PIN INCORRECTO.")
+        intentos=intentos+1
+    else:
+        break
+
+if pin != pin_usuario:
+    print("Se agotaron los intentos.")
+    exit()
+else:
+    retiro=pedir_entero("Ingrese cuanto quiere retirar: ")
+
+if retiro%1000!= 0:
+    print("El monto debe ser múltiplo de 1000.")
+elif retiro>saldo:
+    print("Saldo insuficiente.")
+else:
+    if retiro>20_000:
+        comision=retiro*0.02
+        total_retiro=retiro+comision
+        saldo=saldo-total_retiro
+    else:
+        saldo=saldo-retiro
+
+print(f"Su saldo es: ${saldo:.2f}")
+    
